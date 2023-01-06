@@ -1,5 +1,6 @@
 import React from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 import LandingPage from './components/pages/LandingPage'
 import LoginPage from './components/pages/LoginPage'
@@ -7,6 +8,7 @@ import LoginPage from './components/pages/LoginPage'
 import HomePage from './components/pages/HomePage'
 
 import './App.css'
+import SolarDeviceManagement from './components/pages/SolarDeviceManagement'
 
 export default function App() {
     return (
@@ -15,6 +17,7 @@ export default function App() {
                 <Switch>
                     <Route exact path="/" component={ LandingPage } />
                     <Route path="/login" component={ LoginPage } />
+                    <Route path="/devicemanagement" component={SolarDeviceManagement}/>
                     
                    
                     <Route path="/home" component={ HomePage } />

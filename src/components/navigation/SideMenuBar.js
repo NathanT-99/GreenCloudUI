@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
-import { FaSun,FaBell,FaCloud,FaCamera,FaBatteryFull,FaHouseUser,FaDashcube,FaParagraph,FaCalendar,FaFacebookMessenger,FaEnvelope,FAGear, FaSquare, FaAngular } from 'react-icons/fa';
+import { Link,useHistory } from 'react-router-dom'
+import { FaSun,FaBell,FaCloud,FaCamera,FaBatteryFull,FaHouseUser,FaDashcube,FaParagraph,FaCalendar,FaFacebookMessenger,FaEnvelope,FAGear, FaSquare, FaAngular,FaCanadianMapleLeaf } from 'react-icons/fa';
 import Avatar from 'react-avatar';
 
 import '../../App.css'
@@ -9,6 +9,7 @@ import '../../App.css'
 
 
 export default function SideMenuBar() {
+  const history=useHistory()
     const[home,setHome]=useState(1)
     const[deviceManagement,setDeviceManagement]=useState(0)
     const[montoring,setMonitoring]=useState(0)
@@ -17,14 +18,9 @@ export default function SideMenuBar() {
     const[billing,setBilling]=useState(0)
     const[messages,setMessages]=useState(0)
     return(
-        <div style={{display:'flex',backgroundColor:'#363740',width:'20%',display:'flex',flexDirection:'column'}}>
-        <div style={{height:'15%',flexDirection:'row',display:'flex',justifyContent:'center',paddingTop:'10%'}}>
-            <div style={{height:30,width:30,borderRadius:15,backgroundColor:'green',justifyContent:'center',alignItems:'center',display:'flex',marginRight:5}}>
-              <h4 style={{textAlign:'center',color:'white'}}>G</h4>
-               
-
-
-            </div>
+        <div style={{display:'flex',backgroundColor:'#363740',width:'20%',display:'flex',flexDirection:'column',height:1000}}>
+        <div style={{height:'10%',flexDirection:'row',display:'flex',justifyContent:'center',paddingTop:'10%'}}>
+  <FaCanadianMapleLeaf color={"green"} size={40} style={{paddingTop:'5%'}} />
             <h5 style={{color:'#9FA2B4',paddingTop:5}}>Green Energy Cloud</h5>
 
 
@@ -40,9 +36,9 @@ export default function SideMenuBar() {
             setDeviceManagement(0)
 
         }}
-        style={{display:'flex',height:40,alignItems:'center',backgroundColor:home?"#ABACAF":"#363740",paddingLeft:'8%'}}>
-<FaHouseUser size={13} color={home?"green":"gray"} style={{alignSelf:'center'}}/>
-<h7 style={{color:home?"green":"gray",marginLeft:5,fontSize:14}}>Home</h7>
+        style={{display:'flex',height:40,alignItems:'center',paddingLeft:'8%'}}>
+<FaHouseUser size={13} color={home?"white":"gray"} style={{alignSelf:'center'}}/>
+<h7 style={{color:home?"white":"gray",marginLeft:5,fontSize:14}}>Home</h7>
 </div>
 <div
   onClick={()=>{
@@ -55,24 +51,27 @@ export default function SideMenuBar() {
     setDeviceManagement(1)
 
 }}
- style={{display:'flex',paddingLeft:'8%',height:40,alignItems:'center',backgroundColor:deviceManagement?"#ABACAF":"#363740"}}>
-<FaDashcube size={13} color={deviceManagement?"green":"gray"} style={{alignSelf:'center'}}/>
-<h7 style={{color:deviceManagement?"green":"gray",marginLeft:5,fontSize:14}}>Device Management</h7>
+ style={{display:'flex',paddingLeft:'8%',height:40,alignItems:'center',}}>
+<FaDashcube size={13} color={deviceManagement?"white":"gray"} style={{alignSelf:'center'}}/>
+<h7 style={{color:deviceManagement?"white":"gray",marginLeft:5,fontSize:14}}>Device Management</h7>
 </div>
 <div
   onClick={()=>{
+    console.log("hi")
+    history.push("/devicemanagement")
+   
     setHome(0)
     setMessages(0)
     setBilling(0)
-    setMonitoring(1)
+    setMonitoring(0)
     setCalendar(0)
     setControl(0)
-    setDeviceManagement(0)
+    setDeviceManagement(1)
 
 }}
-style={{display:'flex',paddingLeft:'8%',height:40,alignItems:'center',backgroundColor:montoring?"#ABACAF":"#363740"}}>
-<FaAngular size={13} color={montoring?"green":"gray"} style={{alignSelf:'center',fontSize:14}}/>
-<h7 style={{color:montoring?"green":"gray",marginLeft:5,fontSize:14}}>Monitoring & Tracking</h7>
+style={{display:'flex',paddingLeft:'8%',height:40,alignItems:'center'}}>
+<FaAngular size={13} color={montoring?"white":"gray"} style={{alignSelf:'center',fontSize:14}}/>
+<h7 style={{color:montoring?"white":"gray",marginLeft:5,fontSize:14}}>Monitoring & Tracking</h7>
 </div>
 <div
   onClick={()=>{
@@ -85,9 +84,9 @@ style={{display:'flex',paddingLeft:'8%',height:40,alignItems:'center',background
     setDeviceManagement(0)
 
 }}
-style={{display:'flex',paddingLeft:'8%',height:40,alignItems:'center',backgroundColor:control?"#ABACAF":"#363740"}}>
-<FaSquare size={13} color={control?"green":"gray"} style={{alignSelf:'center',fontSize:14}}/>
-<h7 style={{color:control?"green":"gray",marginLeft:5,fontSize:14}}>Control & Configuration</h7>
+style={{display:'flex',paddingLeft:'8%',height:40,alignItems:'center'}}>
+<FaSquare size={13} color={control?"white":"gray"} style={{alignSelf:'center',fontSize:14}}/>
+<h7 style={{color:control?"white":"gray",marginLeft:5,fontSize:14}}>Control & Configuration</h7>
 </div>
 <div
   onClick={()=>{
@@ -100,9 +99,9 @@ style={{display:'flex',paddingLeft:'8%',height:40,alignItems:'center',background
     setDeviceManagement(0)
 
 }}
-style={{display:'flex',paddingLeft:'8%',height:40,alignItems:'center',backgroundColor:calendar?"#ABACAF":"#363740"}}>
-<FaCalendar size={13} color={calendar?"green":"gray"} style={{alignSelf:'center',fontSize:14}}/>
-<h7 style={{color:calendar?"green":"gray",marginLeft:5}}>Calender</h7>
+style={{display:'flex',paddingLeft:'8%',height:40,alignItems:'center'}}>
+<FaCalendar size={13} color={calendar?"white":"gray"} style={{alignSelf:'center',fontSize:14}}/>
+<h7 style={{color:calendar?"white":"gray",marginLeft:5}}>Calender</h7>
 </div>
 <div
   onClick={()=>{
@@ -115,9 +114,9 @@ style={{display:'flex',paddingLeft:'8%',height:40,alignItems:'center',background
     setDeviceManagement(0)
 
 }}
-style={{display:'flex',paddingLeft:'8%',height:40,alignItems:'center',backgroundColor:billing?"#ABACAF":"#363740"}}>
-<FaCalendar size={13} color={billing?"green":"gray"} style={{alignSelf:'center',fontSize:14}}/>
-<h7 style={{color:billing?"green":"gray",marginLeft:5}}>Billing</h7>
+style={{display:'flex',paddingLeft:'8%',height:40,alignItems:'center'}}>
+<FaCalendar size={13} color={billing?"white":"gray"} style={{alignSelf:'center',fontSize:14}}/>
+<h7 style={{color:billing?"white":"gray",marginLeft:5}}>Billing</h7>
 </div>
 
 <div
