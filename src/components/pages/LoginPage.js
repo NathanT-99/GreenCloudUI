@@ -1,18 +1,23 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
-import { FaSun,FaBell,FaCloud,FaCamera,FaBatteryFull,FaHouseUser,FaDashcube,FaParagraph,FaCalendar,FaFacebookMessenger,FaEnvelope,FAGear, FaSquare, FaAngular } from 'react-icons/fa';
+import React, { useRef, useState } from 'react'
+import { Link, Route } from 'react-router-dom'
+import { FaSun,FaBell,FaCloud,FaCamera,FaBatteryFull,FaHouseUser,FaDashcube,FaParagraph,FaCalendar,FaFacebookMessenger,FaEnvelope,FAGear, FaSquare, FaAngular, FaRegLaughBeam } from 'react-icons/fa';
 import Avatar from 'react-avatar';
 
+import MeterPage from './MeterPage';
+import IOTPage from './IOTPage';
+
 import '../../App.css'
+import './LoginPage.css'
 import bg from '../../assets/images/bg.png'
 import {Line} from 'react-chartjs-2'
 import { Chart as ChartJS,LineController,LineElement,Title,Tooltip,Legend,CategoryScale,LinearScale,PointElement} from 'chart.js' 
+import Switch from '../Switch';
 ChartJS.register(
     Title,Tooltip,Legend,LineElement,
     CategoryScale,LinearScale,PointElement
 )
 
-
+export const SideBarContext = React.createContext(null);
 
 export default function SignInPage() {
     const [overviewColor,setoverviewColor]=useState(0);
@@ -20,6 +25,26 @@ export default function SignInPage() {
     const [storageColor,setstorageColor]=useState(0);
     const [cameraColor,setcameraColor]=useState(0);
     const [iotColor,setiotColor]=useState(0);
+    const [meterColor,setmeterColor]=useState(0);
+    //SideBar
+    const [homeColor,setHomeColor]=useState(1);
+    const [deviceMColor,setDeviceMColor]=useState(0);
+    const [mtColor,setmtColor]=useState(0);
+    const [ccColor,setccColor]=useState(0);
+    const value = React.useMemo(() => {
+        return {
+            homeColor,
+            setHomeColor,
+            deviceMColor,
+            setDeviceMColor,
+            mtColor,
+            setmtColor,
+            ccColor,
+            setccColor,
+            log: (t) => console.log(t)
+        }
+    }, [homeColor, deviceMColor, mtColor, ccColor]);
+
     const [data,setData]=useState({
         labels:[0,1,2,3,4,5,6,7,8,9,10],
         datasets:[
@@ -34,6 +59,7 @@ export default function SignInPage() {
             }
         ]
     })
+    
     var options = {
         scales: {
             x: {
@@ -50,9 +76,11 @@ export default function SignInPage() {
     }
   
     return (
+    <>
+    <div id='background'></div>
+     <div style={{height:'100vh',display:'flex',flexDirection:'row',overflowY:'auto',overflowX:'hidden'}}>
         
-     <div style={{height:'100vh',display:'flex',flexDirection:'row'}}>
-         <div style={{display:'flex',backgroundColor:'#363740',width:'20%',display:'flex',flexDirection:'column'}}>
+         <div style={{height:'100vh',backgroundColor:'#363740',width:'20%',flexDirection:'column'}}>
              <div style={{height:'15%',flexDirection:'row',display:'flex',justifyContent:'center',paddingTop:'10%'}}>
                  <div style={{height:30,width:30,borderRadius:15,backgroundColor:'green',justifyContent:'center',alignItems:'center',display:'flex',marginRight:5}}>
                    <h4 style={{textAlign:'center',color:'white',paddingTop:10}}>G</h4>
@@ -66,38 +94,74 @@ export default function SignInPage() {
              </div>
              <div style={{display:'flex',marginLeft:'10%',height:40,alignItems:'center'}}>
     <FaHouseUser size={13} color={'gray'} style={{alignSelf:'center'}}/>
-    <h7 style={{color:"gray",marginLeft:5,fontSize:14}}>Home</h7>
+    <div onClick={()=>{
+    console.log("onclick")
+    setHomeColor(!homeColor)
+    setDeviceMColor(0)
+    setmtColor(0)
+    setccColor(0)
+
+    }} style={{display:'flex',justifyContent:'center'}}>
+        <h6 style={{fontSize:14, marginLeft:5, color:homeColor?'green':'gray'}}>Home</h6>
+</div>
 </div>
 <div style={{display:'flex',marginLeft:'10%',height:40,alignItems:'center'}}>
     <FaDashcube size={13} color={'gray'} style={{alignSelf:'center'}}/>
-    <h7 style={{color:"gray",marginLeft:5,fontSize:14}}>Dashboard</h7>
+    <div onClick={()=>{
+    console.log("onclick")
+    setHomeColor(0)
+    setDeviceMColor(!deviceMColor)
+    setmtColor(0)
+    setccColor(0)
+
+}} style={{display:'flex',justifyContent:'center'}}>
+    <h6 style={{fontSize:14, marginLeft:5, color:deviceMColor?'green':'gray'}}>Device Management</h6>
+</div>
 </div>
 <div style={{display:'flex',marginLeft:'10%',height:40,alignItems:'center'}}>
     <FaAngular size={13} color={'gray'} style={{alignSelf:'center',fontSize:14}}/>
-    <h7 style={{color:"gray",marginLeft:5,fontSize:14}}>Analytics</h7>
+    <div onClick={()=>{
+    console.log("onclick")
+    setHomeColor(0)
+    setDeviceMColor(0)
+    setmtColor(!mtColor)
+    setccColor(0)
+
+}} style={{display:'flex',justifyContent:'center'}}>
+    <h6 style={{color:mtColor?'green':'gray',marginLeft:5,fontSize:14}}>Monitor & Tracking</h6>
+</div>
 </div>
 <div style={{display:'flex',marginLeft:'10%',height:40,alignItems:'center'}}>
     <FaSquare size={13} color={'gray'} style={{alignSelf:'center',fontSize:14}}/>
-    <h7 style={{color:"gray",marginLeft:5,fontSize:14}}>Services</h7>
+    <div onClick={()=>{
+    console.log("onclick")
+    setHomeColor(0)
+    setDeviceMColor(0)
+    setmtColor(0)
+    setccColor(!ccColor)
+
+}} style={{display:'flex',justifyContent:'center'}}>
+    <h6 style={{color:ccColor?'green':'gray',marginLeft:5,fontSize:14}}>Control & Config</h6>
+</div>
 </div>
 <div style={{display:'flex',marginLeft:'10%',height:40,alignItems:'center'}}>
     <FaCalendar size={13} color={'gray'} style={{alignSelf:'center',fontSize:14}}/>
-    <h7 style={{color:"gray",marginLeft:5}}>Calender</h7>
+    <h6 style={{color:"gray",marginLeft:5}}>Calender</h6>
 </div>
 <div style={{display:'flex',marginLeft:'10%',height:40,alignItems:'center'}}>
     <FaFacebookMessenger size={13} color={'gray'} style={{alignSelf:'center',fontSize:14}}/>
-    <h7 style={{color:"gray",marginLeft:5,fontSize:14}}>Messages</h7>
+    <h6 style={{color:"gray",marginLeft:5,fontSize:14}}>Messages</h6>
 </div>
 <div style={{height:1,backgroundColor:'gray'}}>
 
 </div>
 <div style={{display:'flex',marginLeft:'10%',height:40,alignItems:'center',fontSize:14}}>
     <FaSun size={13} color={'gray'} style={{alignSelf:'center',fontSize:14}}/>
-    <h7 style={{color:"gray",marginLeft:5}}>Settings</h7>
+    <h6 style={{color:"gray",marginLeft:5}}>Settings</h6>
 </div>
 <div style={{display:'flex',marginLeft:'10%',height:40,alignItems:'center'}}>
     <FaEnvelope size={13} color={'gray'} style={{alignSelf:'center',fontSize:14}}/>
-    <h7 style={{color:"gray",marginLeft:5,fontSize:14}}>Subscription</h7>
+    <h6 style={{color:"gray",marginLeft:5,fontSize:14}}>Subscription</h6>
 </div>
              <div>
 
@@ -106,7 +170,7 @@ export default function SignInPage() {
 
          </div>
          <div style={{display:'flex',width:'80%',paddingRight:'5%',flexDirection:'column'}}>
-         <div style={{height:'10%',backgroundColor:'white',display:'flex',flexDirection:'row',alignItems:'center'}}>
+         <div style={{position:'relative',height:'10%',width:'80vw',backgroundColor:'#29292F',display:'flex',flexDirection:'row',alignItems:'center',paddingBottom:'20px',paddingTop:'20px'}}>
 <div onClick={()=>{
     console.log("onclick")
     setoverviewColor(!overviewColor)
@@ -114,9 +178,10 @@ export default function SignInPage() {
     setiotColor(0)
     setstorageColor(0)
     setsolarColor(0)
+    setmeterColor(0)
 
 }} style={{width:'10%',display:'flex',justifyContent:'center'}}>
-    <h7 style={{fontSize:14, color:overviewColor?'green':'gray',borderBottom:overviewColor?'1px solid green':'0px solid white'}}>Overview</h7>
+    <h6 style={{fontSize:14, color:overviewColor?'green':'gray',borderBottom:overviewColor?'1px solid green':'0px solid white'}}>Overview</h6>
 </div>
 <div 
 onClick={()=>{
@@ -125,12 +190,13 @@ onClick={()=>{
     setcameraColor(0)
     setiotColor(0)
     setstorageColor(0)
+    setmeterColor(0)
     
 
 }}
 style={{width:'10%',display:'flex',borderBottom:solarColor?'1px solid green':'0px solid white',justifyContent:'center'}}>
     <FaSun size={14} color={solarColor?"green":'gray' } style={{alignSelf:'center'}}/>
-    <h7 style={{fontSize:14,color:solarColor?"green":'gray' ,marginLeft:5}}>Solar</h7>
+    <h6 style={{fontSize:14,color:solarColor?"green":'gray' ,marginLeft:5}}>Solar</h6>
 </div>
 <div style={{width:'10%',display:'flex',borderBottom:storageColor?'1px solid green':'0px solid white',justifyContent:'center'}}>
 <FaBatteryFull 
@@ -142,10 +208,11 @@ onClick={()=>{
     setiotColor(0)
    
     setsolarColor(0)
+    setmeterColor(0)
 
 }}
 size={14} color={storageColor?"green":'gray'} style={{alignSelf:'center'}}/>
-    <h7 style={{fontSize:14,color:"gray",marginLeft:5}}>Storage</h7>
+    <h6 style={{fontSize:14,color:"gray",marginLeft:5}}>Storage</h6>
 </div>
 <div style={{width:'10%',display:'flex',justifyContent:'center', borderBottom:cameraColor?'1px solid green':'0px solid white'}}>
 <FaCamera
@@ -156,29 +223,41 @@ onClick={()=>{
     setiotColor(0)
     setstorageColor(0)
     setsolarColor(0)
+    setmeterColor(0)
 
 }} size={14} color={cameraColor?'green':"gray"} style={{alignSelf:'center'}}/>
-    <h7 style={{fontSize:14,color:cameraColor?'green':"gray",marginLeft:5}}>Camera</h7>
+    <h6 style={{fontSize:14,color:cameraColor?'green':"gray",marginLeft:5}}>Camera</h6>
 </div>
-<div style={{width:'10%',display:'flex',justifyContent:'center', borderBottom:iotColor?'1px solid green':'0px solid white'}}>
-<FaCloud
-onClick={()=>{
+<div onClick={()=>{
     setiotColor(!iotColor)
     setoverviewColor(0)
     setcameraColor(0)
-    
     setstorageColor(0)
     setsolarColor(0)
+    setmeterColor(0)
 
-}} size={14} color={iotColor?'green':"gray"} style={{alignSelf:'center'}}/>
-    <h7 style={{fontSize:14,color:iotColor?'green':"gray",marginLeft:5}}>Iot</h7>
+}} style={{width:'10%',display:'flex',justifyContent:'center'}}>
+    <h6 style={{fontSize:14, color:iotColor?'white':'gray',borderBottom:iotColor?'1px solid white':'0px solid'}}>Iot</h6>
 </div>
+<div onClick={()=>{
+    console.log("onclick")
+    setoverviewColor(0)
+    setcameraColor(0)
+    setiotColor(0)
+    setstorageColor(0)
+    setsolarColor(0)
+    setmeterColor(!meterColor)
+
+}} style={{width:'10%',display:'flex',justifyContent:'center'}}>
+    <h6 style={{fontSize:14, color:meterColor?'white':'gray',borderBottom:meterColor?'1px solid white':'0px solid'}}>Meter</h6>
+</div>
+
 <div style={{flex:'display',flexDirection:'column'}}>
 <input style={{width:'100%',borderRadius:3,backgroundColor:'#EDEEF4',height:'30%',fontSize:14}} placeholder={"Search"} type="text"/>
 
 </div>
 <FaBell size={15} color={'gray'} style={{marginLeft:10}}/>
-<div style={{display:'flex',justifyContent:'flex-end',width:'30%',alignItems:'center'}}>
+<div style={{display:'flex',justifyContent:'flex-end',width:'30%',alignItems:'center',marginRight:20}}>
 
     <p style={{marginRight:10,marginTop:15}}>Kevin Gao</p>
     <Avatar round={true} size={25} name="Foo Bar" />
@@ -303,17 +382,23 @@ onClick={()=>{
          </div>
          </div>:storageColor?<div>Storage</div>:null}
             
-            
-            
-             
 
-         </div>
+{iotColor?
+<SideBarContext.Provider value={value}>
+    <IOTPage/>
+</SideBarContext.Provider>:iotColor?<>IOT Page</>:null}
+
+{meterColor?
+<SideBarContext.Provider value={value}>
+    <MeterPage/>
+</SideBarContext.Provider>:meterColor?<>Meter Page</>:null}
+
+         </div>       
         
-       
 
      </div>
+     </>
     )
-
 
 
 }

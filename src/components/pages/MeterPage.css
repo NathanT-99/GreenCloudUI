@@ -1,0 +1,151 @@
+.MeterLabel {
+    width: 17%;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    border-radius: 1vh;
+    padding: 1.7%;
+    margin: 5%;
+}
+#EMeter {
+    background: linear-gradient(to right, #ffcc00 0%, #feef00 100%);
+}
+#WMeter {
+    background: linear-gradient(to right, #0033cc 0%, #66ccff 100%);
+}
+
+#update {
+    background: linear-gradient(to right, #3366cc 0%, #9999ff 100%);
+    font-size: 26px;
+    border: none;
+    border-radius: 7px;
+    block-size: 30px;
+    width: 170px;
+    height: 40px;
+    margin-right: 150px;
+}
+#delete {
+    background: linear-gradient(to right, #ff0000 0%, #ff9999 100%);
+    font-size: 26px;
+    border: none;
+    border-radius: 7px;
+    block-size: 30px;
+    width: 170px;
+    height: 40px;
+    margin-left: 150px;
+}
+#view {
+    background-color: darkslateblue;
+    font-size: large;
+    color: white;
+    border: none;
+    border-radius: 7px;
+    block-size: 30px;
+    width: 110px;
+    margin: 3px;
+}
+
+/* Table CSS*/
+.listTable{
+    table-layout: fixed;
+    width: 80%;
+    background-color: whitesmoke;
+    border-radius: 3vh;
+    border: 0px solid;
+    border-collapse: collapse;
+    margin-left: 10%;
+}
+
+.listCell {
+    box-sizing: content-box;
+    width: 100%;
+    text-align: center;
+    vertical-align: middle;
+}
+.dmName {
+    padding-right: 200px;
+}
+th.listCell {
+    font-size: large;
+}
+.viewCellStyle1 {
+    opacity: 0.7;
+    text-align: center;
+}
+.viewCellStyle2 {
+    height: 7vh;
+    background-color: gainsboro;
+    opacity: 0.7;
+    text-align: center;
+    border: 10px solid;
+    border-left: 15px solid;
+    border-right: 15px solid;
+    border-color: transparent;
+}
+  
+.listTR:nth-child(even){
+    background-color: rgb(227, 227, 227);
+}
+
+.listTR:first-child {
+    border-top: 2px solid;
+    border-top-color: rgb(227, 227, 227);
+}
+
+.listTR:last-child td:first-child{
+    border-bottom-left-radius: 3vh;
+}
+.listTR:last-child td:last-child{
+    border-bottom-right-radius: 3vh;
+}
+
+/*MT page CSS*/
+#MTList {
+    display: flex;
+    width: 100%;
+    overflow-x: auto;
+    margin-left: 3%;
+    flex-shrink: 0;
+}
+#MTList > * {
+    display: flex;
+}
+#MTList > * > tr {
+    display: flex;
+    flex-direction: column;
+    width: 15vw;
+    min-width: 15vw;
+    text-align: center;
+}
+#MTList > * > tr > * {
+    height: 100%;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+#MTList > * > tr > *:first-child {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+#MTList > * > tr > td:first-child {
+    width: 80%;
+    align-self: center;
+    background-color: mediumspringgreen;
+    color: white;
+    font-weight: bold;
+    border-radius: 1vh;
+}
+#MTList > * > tr > th:nth-child(2) {
+    margin-bottom: 35.5px;
+}
+#MTList > * > tr > *:nth-child(n+3) {
+    background-color: whitesmoke;
+}
+#MTList > * > tr > *:nth-child(2n+4) {
+    background-color: rgb(227, 227, 227);
+}
+#MTList > * > tr > th:nth-child(n+3) {
+    background-image: linear-gradient(white,white);
+    background-size: 80% 70%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
